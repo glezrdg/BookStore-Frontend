@@ -4,7 +4,7 @@ import { User } from "../models/user.model"; // Import User model
 import { LoginFormData } from "../models/loginFormData.model"; // Import LoginFormData model
 import {
   loginRequest,
-  registerRequest,
+  // registerRequest,
   verifyTokenRequest,
 } from "../services/auth"; // Import auth service functions
 
@@ -37,7 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // Fetch user data on component mount if token is present
   useEffect(() => {
     const checkLogin = async () => {
-      const token = Cookies.get("token"); // Get token from cookies
+      const token = Cookies.get(); // Get token from cookies
       if (!token) {
         setIsAuthenticated(false);
         setLoading(false);
@@ -45,7 +45,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       }
 
       try {
-        const res = await verifyTokenRequest(token); // Verify token with backend
+        const res = await verifyTokenRequest(); // Verify token with backend
+        console.log(res, 'respuest')
         if (!res.data) {
           setIsAuthenticated(false);
           setLoading(false);

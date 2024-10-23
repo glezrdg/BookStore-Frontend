@@ -1,6 +1,5 @@
 import axios from "./axios"; // Use the axios instance you created
 import { LoginFormData } from "../models/loginFormData.model"; // Import the correct types
-import { API_URL } from "../config";
 
 // Register Request
 export const registerRequest = async (user: LoginFormData) => {
@@ -14,11 +13,6 @@ export const loginRequest = async (user: LoginFormData) => {
   return axios.post("/auth/login", user);
 };
 
-// Verify Token Request
-export const verifyTokenRequest = (token: string) => {
-  return axios.get(`${API_URL}/auth/verify`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const verifyTokenRequest = async () => {
+  return axios.get("/auth/verify"); // Cookies should be included automatically
 };
