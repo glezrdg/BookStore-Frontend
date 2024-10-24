@@ -1,4 +1,4 @@
-import React from "react";
+
 import CategoryManager from "./components/CategoryManager";
 import UserManager from "./components/UserManager";
 

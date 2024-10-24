@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   getCategories,
   createCategory,
@@ -9,7 +9,6 @@ import GeneralTable from "../../../../../components/Table";
 import GeneralForm from "../../../../../components/Form";
 import {
   Category,
-  CategoryFormData,
   CategoryStrict,
 } from "../../../../../models/category.model";
 

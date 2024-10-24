@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Author } from '../../models/author.models'
-import { Category } from '../../models/category.models'
 
 // Props interface
 interface FormProps {
   schema: any;
   initialData: any;
   onSubmit: (data: any) => void;
-  categories: any[];
-  authors: any[];
+  categories?: any[];
+  authors?: any[];
 }
 
 function Form({
@@ -96,7 +94,7 @@ function Form({
                 className="border p-2 w-full mt-2"
               >
                 <option value="">Add Category</option>
-                {categories.map((category) => (
+                {categories?.map((category) => (
                   <option key={category._id} value={category._id}>
                     {category.name}
                   </option>
@@ -106,7 +104,7 @@ function Form({
               {formData.categories.length > 0 ? (
                 <ul>
                   {formData.categories.map((item: string) => {
-                    const category = categories.find((c) => c._id === item);
+                    const category = categories?.find((c) => c._id === item);
                     console.log(category);
                     return (
                       <li key={item}>
@@ -134,7 +132,7 @@ function Form({
                 className="border p-2 w-full mt-2"
               >
                 <option value="">Add Author</option>
-                {authors.map((author) => (
+                {authors?.map((author) => (
                   <option key={author._id} value={author._id}>
                     {author.name}
                   </option>
@@ -145,7 +143,7 @@ function Form({
                 <ul>
                   {formData.authors.map((item: string) => {
                     console.log(formData, "autore");
-                    const author = authors.find((a) => a._id === item);
+                    const author = authors?.find((a) => a._id === item);
                     console.log(authors);
                     console.log(author, "autore");
 
@@ -179,7 +177,10 @@ function Form({
         </div>
       ))}
 
-      <button type="submit" className="bg-blue-500 text-white p-2 w-full rounded-lg mb-4">
+      <button
+        type="submit"
+        className="bg-blue-500 text-white p-2 w-full rounded-lg mb-4"
+      >
         Submit
       </button>
     </form>

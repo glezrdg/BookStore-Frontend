@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   getBooks,
   createBook,
@@ -9,11 +9,7 @@ import { useCategories } from "../../../context/CategoryContext"; // Importa el 
 import { useAuthors } from "../../../context/AuthorsContext"; // Importa el contexto de autores
 import GeneralTable from "../../../../../components/Table";
 import GeneralForm from "../../../../../components/Form";
-import {
-  Book,
-  BookFormData,
-  BookStrict,
-} from "../../../../../models/book.model";
+import { Book, BookStrict } from "../../../../../models/book.model";
 
 const bookSchema = [
   { key: "title", label: "Title", type: "text" },
@@ -32,12 +28,12 @@ const BookManager = () => {
   // Usa el contexto de categorías
   const {
     categories,
-    loading: categoryLoading,
+    // loading: categoryLoading,
     error: categoryError,
   } = useCategories();
 
   // Usa el contexto de autores
-  const { authors, loading: authorLoading, error: authorError } = useAuthors();
+  const { authors,  error: authorError } = useAuthors();
 
   useEffect(() => {
     const fetchBooks = async () => {

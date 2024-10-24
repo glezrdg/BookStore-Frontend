@@ -1,5 +1,3 @@
-import React from "react";
-
 interface TableProps<T> {
   columns: { key: keyof T; label: string }[];
   data: T[];

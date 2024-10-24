@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   getUsers,
   createUser,
@@ -92,7 +92,7 @@ const UserManager = () => {
 
       <GeneralTable<User>
         columns={[
-          { key: "name", label: "Name" },
+          { key: "username", label: "Name" },
           { key: "email", label: "Email" },
           { key: "role", label: "Role" }, // Role will be visible in the table
         ]}

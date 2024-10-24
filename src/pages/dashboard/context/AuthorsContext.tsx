@@ -6,14 +6,18 @@ import {
   getAuthorById,
   updateAuthor,
 } from "../../../services/author";
-import { Author, AuthorFormData } from "../../../models/author.model";
+import {
+  Author,
+  AuthorFormData,
+  AuthorStrict,
+} from "../../../models/author.model";
 
 interface AuthorsContextType {
   authors: Author[];
   getAllAuthors: () => Promise<void>;
   getOneAuthor: (id: string) => Promise<Author | null>;
   addAuthor: (author: AuthorFormData) => Promise<void>;
-  editAuthor: (id: string, author: AuthorFormData) => Promise<void>;
+  editAuthor: (id: string, author: AuthorStrict) => Promise<void>;
   removeAuthor: (id: string) => Promise<void>;
   loading: boolean;
   error: string | null;
@@ -72,7 +76,7 @@ export const AuthorsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const editAuthor = async (id: string, author: AuthorFormData) => {
+  const editAuthor = async (id: string, author: AuthorStrict) => {
     try {
       const { data } = await updateAuthor(id, author);
       setAuthors((prevAuthors) =>
