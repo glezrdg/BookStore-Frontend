@@ -1,8 +1,28 @@
+import { Author } from "./author.model";
+import { Category } from "./category.model";
+
 export interface Book {
-  id: string;
+  _id?: string;
   title: string;
-  authors: string[]; // Array of author IDs
-  categories: string[]; // Array of category IDs
-  publishedDate: string; // Use ISO 8601 format (e.g., "2024-01-01")
+  authors: Author[];
+  categories: Category[];
   description: string;
+  publishedDate: string;
+}
+
+export interface BookFormData {
+  title: string;
+  authors: Author[];
+  categories: Category[];
+  description: string;
+  publishedDate: string;
+}
+
+export interface BookStrict {
+  _id: string;
+  title: string;
+  authors: Author[];
+  categories: Category[];
+  description: string;
+  publishedDate: string;
 }

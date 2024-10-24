@@ -1,4 +1,13 @@
 export interface Category {
-  id: string;
+  _id?: string;
+  name: string;
+}
+
+export interface CategoryFormData {
+  name: string;
+}
+
+export interface CategoryStrict{
+  _id: string;
   name: string;
 }

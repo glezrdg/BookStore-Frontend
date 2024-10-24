@@ -1,5 +1,14 @@
 export interface Author {
-  id: string;
+  _id?: string;
   name: string;
   bio?: string; // Optional biography
+}
+export interface AuthorStrict {
+  _id: string;
+  name: string;
+  bio?: string; // Optional biography
+}
+export interface AuthorFormData {
+  name: string;
+  bio?: string;
 }

@@ -5,16 +5,17 @@ import Dashboard from "./pages/dashboard/Dashboard"; // Role-based dashboard
 import Login from "./pages/login/Login";
 import ProtectedRoute from "./ProtectedRoute"; // For authenticated users
 import { AuthProvider } from "./context/AuthContext";
+import Navbar from "./components/Navbar";
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
-         <Routes>
+        <Navbar />
+        <Routes>
           {/* Public Route */}
-          <Route path="/" element={<Home />} />  {/* Books gallery is public */}
+          <Route path="/" element={<Home />} /> {/* Books gallery is public */}
           <Route path="/login" element={<Login />} />
-
           {/* Protected Dashboard Route */}
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />

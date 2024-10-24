@@ -1,6 +1,11 @@
 export interface User {
-  id: string;
+  _id: string;
   username: string;
   email: string;
-  role: "admin" | "bibliotecario"; // Adjust the roles as needed
+  role: "admin" | "librarian"; // Adjust the roles as needed
+}
+export interface UserFormData {
+  username: string;
+  email: string;
+  role: string;
 }

@@ -26,7 +26,7 @@ const Login: React.FC = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-6 rounded shadow-md"
