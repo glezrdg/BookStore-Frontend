@@ -1,18 +1,17 @@
-import axios from "./axios"; // Use the axios instance you created
-import { LoginFormData } from "../models/loginFormData.model"; // Import the correct types
+import axios from "./axios"; // Use the pre-configured axios instance
+import { LoginFormData } from "../models/loginFormData.model"; // Import LoginFormData model
 
-// Register Request
+// Register Request (if needed in the future)
 export const registerRequest = async (user: LoginFormData) => {
-  // Explicitly type 'user'
-  return axios.post("/auth/register", user);
+  return axios.post("/auth/register", user); // Use axios instance
 };
 
 // Login Request
 export const loginRequest = async (user: LoginFormData) => {
-  // Explicitly type 'user'
-  return axios.post("/auth/login", user);
+  return axios.post("/auth/login", user); // Send login request to backend
 };
 
+// Verify Token Request
 export const verifyTokenRequest = async () => {
-  return axios.get("/auth/verify"); // Cookies should be included automatically
+  return axios.get("/auth/verify"); // Verify token with cookies included
 };

@@ -2,11 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 import Cookies from "js-cookie";
 import { User } from "../models/user.model"; // Import User model
 import { LoginFormData } from "../models/loginFormData.model"; // Import LoginFormData model
-import {
-  loginRequest,
-  // registerRequest,
-  verifyTokenRequest,
-} from "../services/auth"; // Import auth service functions
+import { loginRequest, verifyTokenRequest } from "../services/auth"; // Import auth service functions
 
 // Define the shape of our context state
 interface AuthContextType {
@@ -37,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // Fetch user data on component mount if token is present
   useEffect(() => {
     const checkLogin = async () => {
-      const token = Cookies.get(); // Get token from cookies
+      const token = Cookies.get("token"); // Get token from cookies
       if (!token) {
         setIsAuthenticated(false);
         setLoading(false);
@@ -46,7 +42,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       try {
         const res = await verifyTokenRequest(); // Verify token with backend
-        console.log(res, 'respuest')
         if (!res.data) {
           setIsAuthenticated(false);
           setLoading(false);
@@ -69,13 +64,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const login = async (data: LoginFormData) => {
     try {
       const response = await loginRequest(data); // Use loginRequest from auth service
-      const { token, user } = response.data;
+      const { token, ...userData } = response.data;
 
       // Store token in cookies
-      Cookies.set("token", token, { expires: 1 }); // 1 day expiry
+      Cookies.set("token", token, {
+        expires: 1,
+        sameSite: "none",
+        secure: true,
+      }); // 1 day expiry
 
       // Update state with user data
-      setUser(user);
+      setUser(userData);
       setIsAuthenticated(true);
     } catch (error) {
       console.error("Login failed:", error);
@@ -85,7 +84,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   // Logout function
   const logout = () => {
     // Clear token and reset state
-    Cookies.remove("token");
+    Cookies.remove("token", { sameSite: "none", secure: true });
     setUser(null);
     setIsAuthenticated(false);
   };
